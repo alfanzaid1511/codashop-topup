@@ -1,0 +1,27 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          # Misalnya, jika Anda menggunakan Composer
+          composer install
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.5.6
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "alfanzaid"
+          heroku_email: "alfanzaid777@gmail.com"
+          heroku_deploy_branch: "main"
+          usedocker: true
